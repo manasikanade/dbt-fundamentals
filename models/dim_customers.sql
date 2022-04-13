@@ -1,29 +1,19 @@
-with customers as (
+{{
+    config(materialized="table")
+}}
 
-    select
-        id as customer_id,
-        first_name,
-        last_name
-
-    from `dbt-self-learning-handson.dbt_handson_2.jaffle_shop_customers`
-
+with customers as(
+    select * from {{ ref('stg_customers') }}
 ),
-orders as (
 
-    select
-        id as order_id,
-        user_id as customer_id,
-        order_date,
-        status
-
-    from `dbt-self-learning-handson.dbt_handson_2.jaffle_shop_orders`
-
+orders as(
+    select * from {{ ref('stg_orders') }}
 ),
+
 customer_orders as (
 
     select
         customer_id,
-
         min(order_date) as first_order_date,
         max(order_date) as most_recent_order_date,
         count(order_id) as number_of_orders
