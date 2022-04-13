@@ -1,0 +1,1 @@
+SELECT * FROM `dbt-self-learning-handson.dbt_handson_2.stripe_payments` 
