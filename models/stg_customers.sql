@@ -1,5 +1,5 @@
 {{
-    config(full_refresh=true,materialized="view")
+    config(full_refresh=true,materialized="table")
 }}
 with customers as (
 
